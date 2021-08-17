@@ -21,7 +21,7 @@ public:
 	MyArray(const MyArray<T>& obj);
 	MyArray& operator = (const MyArray& obj);
 	//MyArray& operator = (T obj);
-	T& operator [] (T index);
+	T& operator [] (int index);
 
 	void FillArray();
 
@@ -94,13 +94,13 @@ inline MyArray<T>& MyArray<T>::operator=(const MyArray<T>& obj)
 }
 
 template<class T>
-inline T& MyArray<T>::operator[](T index)
+inline T& MyArray<T>::operator[](int index)
 {
 	if (index < 0 || index >= size)
 	{
 		cout << "Указанного индекса нет в массиве: " << index;
 
-		return index;
+		//return index;
 	}
 
 	else
@@ -121,7 +121,7 @@ inline void MyArray<T>::FillArray()
 
 		else 
 		{
-			throw "Указанный тип переменной не поддерживает генерацию значений";
+			throw "Указанный тип переменной не поддерживает генерацию значений\n";
 		}
 	}
 }

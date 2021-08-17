@@ -32,23 +32,23 @@ int main()
 		cout << ex;
 	}
 
-	//fstream fout;
+	fstream fout;
 
-	//fout.open(fName);
+	fout.open(fName);
 
-	//if (!fout.is_open())
-	//{
-	//	cout << "Ошибка открытия файла на запись!";
-	//}
+	if (!fout.is_open())
+	{
+		cout << "Ошибка открытия файла на запись!";
+	}
 
-	//else
-	//{				
-	//	cout << "Данные успешно записаны в файл!\n";
+	else
+	{				
+		cout << "Данные успешно записаны в файл!\n";
 
-	//	fout << arr2 << "\n";		
-	//}
+		fout << arr2 << "\n";		
+	}
 
-	//fout.close();
+	fout.close();
 
 	ifstream fin;
 	fin.open(fName);
@@ -101,7 +101,7 @@ int main()
 
 	//fin.close();
 
-	//arr2[0] = '2';
+	//arr2[0] = 444;
 
 	cout << arr3;
 
