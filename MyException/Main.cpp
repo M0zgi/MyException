@@ -64,8 +64,11 @@ int main()
 		cout << "Файл открыт!\n";
 		for (size_t i = 0; i < arr3.GetSize(); i++)
 		{
-			fin >> buf;
-			arr3[i] = buf;
+			
+				fin >> buf;
+				arr3[i] = buf;
+		
+			
 		}
 	}
 
