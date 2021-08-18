@@ -121,7 +121,7 @@ inline void MyArray<T>::FillArray()
 	for (size_t i = 0; i < size; i++)
 	{
 		if (typeid(T).name() == (string)"int")
-			array[i] = rand() % 100;
+			array[i] = rand() % 10;
 		else if (typeid(T).name() == (string)"double")
 			array[i] = (rand() % 1000) / 10.;
 		else if (typeid(T).name() == (string)"char")
@@ -129,7 +129,7 @@ inline void MyArray<T>::FillArray()
 
 		else 
 		{
-			throw "Указанный тип переменной не поддерживает генерацию значений\n";
+			throw exception ("Указанный тип переменной не поддерживает генерацию значений\n");
 		}
 	}
 }
