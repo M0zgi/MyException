@@ -20,14 +20,11 @@ public:
 	explicit MyArray(int size);
 	MyArray(const MyArray<T>& obj);
 	MyArray& operator = (const MyArray& obj);
-	//MyArray& operator = (T obj);
 	T& operator [] (int index);
 
 	void FillArray();
 
 	int GetSize() { return size; }
-	
-	void Load();
 
 	~MyArray();
 
@@ -46,9 +43,10 @@ inline MyArray<T>::MyArray(int size)
 	    throw size;
 	}
 
+	// используем класс exception
 	if (size == 0)
 	{		
-		throw "Был создан массив с кол-вом элементов 0";
+		throw exception ("Был создан массив с кол-вом элементов 0");
 	}
 
 	this->size = size;
@@ -102,14 +100,9 @@ inline T& MyArray<T>::operator[](int index)
 			cout << "Указанный индекс массива < 0: ";
 			throw index;
 		}
-		
 
-		else
-		{
-			cout << "Указанный индекс массива >= size: ";
-			throw index;
-		}
-	
+		cout << "Указанный индекс массива >= size: ";
+		throw index;	
 	}
 
 	else

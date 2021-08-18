@@ -28,30 +28,31 @@ int main()
 		cout << ex;
 	}
 
-	catch (const char* ex)
+	catch (const exception &ex)
 	{
-		cout << ex;
+		cout << ex.what();
 	}
 
 	cout << "\n-------------------------------------\n\n";
 
 	ofstream fout;
-
-	fout.open(fName);
-
-	if (!fout.is_open())
+	fout.exceptions(ofstream::badbit | ofstream::failbit);
+	try
 	{
-		cout << "Ошибка открытия файла на запись!";
-	}
-
-	else
-	{				
+		fout.open(fName);
 		cout << "Данные успешно записаны в файл!\n";
 
-		fout << arr2 << "\n";		
+		fout << arr2 << "\n";
+		fout.close();
 	}
 
-	fout.close();
+	catch (const ofstream::failure& ex)
+	{
+		cout << "Ошибка!" << endl;
+		cout << ex.what() << endl; //описание ошибки exception
+		cout << ex.code() << endl;	//стандартный код ошибки fstream	
+	}	
+	
 
 	cout << "\n-------------------------------------\n\n";
 	
@@ -80,11 +81,12 @@ int main()
 	}
 	catch (const ifstream::failure & ex)
 	{
-		cout << "Ошибка открытия файла!" << endl;
+		cout << "Ошибка!" << endl;
 		cout << ex.what() << endl; //описание ошибки exception
 		cout << ex.code() << endl;	//стандартный код ошибки fstream	
 	}
 	cout << "\n-------------------------------------\n\n";
+	
 	//Тестирование throw несуществующего индекса массива
 
 	try
@@ -94,11 +96,7 @@ int main()
 	catch (const int ex)
 	{
 		cout << ex;
-	}
-	
-	
-
-	
+	}	
 
 	cout << endl;
 	system("pause");
