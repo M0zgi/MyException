@@ -47,9 +47,8 @@ inline MyArray<T>::MyArray(int size)
 	}
 
 	if (size == 0)
-	{
-		cout << "Был создан массив с кол-вом элементов: ";
-		throw size;
+	{		
+		throw "Был создан массив с кол-вом элементов 0";
 	}
 
 	this->size = size;
@@ -98,9 +97,19 @@ inline T& MyArray<T>::operator[](int index)
 {
 	if (index < 0 || index >= size)
 	{
-		cout << "Указанного индекса нет в массиве: " << index;
+		if (index < 0)
+		{
+			cout << "Указанный индекс массива < 0: ";
+			throw index;
+		}
+		
 
-		//return index;
+		else
+		{
+			cout << "Указанный индекс массива >= size: ";
+			throw index;
+		}
+	
 	}
 
 	else

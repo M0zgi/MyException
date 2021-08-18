@@ -14,6 +14,7 @@ int main()
 
 	MyArray <char> arr2(1);
 	MyArray <char> arr3(8);
+	
 	try
 	{
 		MyArray <char> arr(8);
@@ -22,7 +23,7 @@ int main()
 		
 		arr2 = arr;
 	}
-	catch (int ex)
+	catch (const int ex)
 	{
 		cout << ex;
 	}
@@ -32,7 +33,9 @@ int main()
 		cout << ex;
 	}
 
-	fstream fout;
+	cout << "\n-------------------------------------\n\n";
+
+	ofstream fout;
 
 	fout.open(fName);
 
@@ -50,63 +53,52 @@ int main()
 
 	fout.close();
 
+	cout << "\n-------------------------------------\n\n";
+	
+	//Тестирование открытие файла на считывание данных используя стандартный exception fstream
+
 	ifstream fin;
-	fin.open(fName);
-	char buf;
 
-	if (!fin.is_open())
-	{
-		cout << "Ошибка открытия файла на чтение данных!\n";
-	}
+	fin.exceptions(ifstream::badbit | ifstream::failbit);
 
-	else
+	char buf;	
+
+	try
 	{
+		fin.open(fName);
 		cout << "Файл открыт!\n";
 		for (size_t i = 0; i < arr3.GetSize(); i++)
 		{
-			
-				fin >> buf;
-				arr3[i] = buf;
-		
-			
+			fin >> buf;
+			arr3[i] = buf;
 		}
+		cout << "Данные успешно считаны!\n";
+
+		cout << arr3;
+
+		fin.close();
 	}
+	catch (const ifstream::failure & ex)
+	{
+		cout << "Ошибка открытия файла!" << endl;
+		cout << ex.what() << endl; //описание ошибки exception
+		cout << ex.code() << endl;	//стандартный код ошибки fstream	
+	}
+	cout << "\n-------------------------------------\n\n";
+	//Тестирование throw несуществующего индекса массива
 
-	//ifstream fin;
+	try
+	{
+		cout << arr2[991];
+	}
+	catch (const int ex)
+	{
+		cout << ex;
+	}
+	
+	
 
-	//fin.open(fName);
-
-	//if (!fin.is_open())
-	//{
-	//	cout << "Ошибка открытия файла2!";
-	//}
-
-	//else
-	//{
-	//	cout << "Файл открыт!\n";
-
-	//		string buf;
-	//		int i = 0;
-
-	//		//fin >> arr3;
-
-	//		while (!fin.eof())
-	//		{
-	//			//buf="";
-	//			//getline(fin, buf);
-	//			fin >> arr3;
-	//			// = buf;
-	//			//cout << buf << " ";
-	//			//arr3[i] = buf;
-	//			
-	//		}		
-	//}
-
-	//fin.close();
-
-	//arr2[0] = 444;
-
-	cout << arr3;
+	
 
 	cout << endl;
 	system("pause");
