@@ -35,59 +35,59 @@ int main()
 		cout << ex.what();
 	}
 
-	//cout << "\n-------------------------------------\n\n";
+	cout << "\n-------------------------------------\n\n";
 
-	//ofstream fout;
-	//fout.exceptions(ofstream::badbit | ofstream::failbit);
-	//try
-	//{
-	//	fout.open(fName);
-	//	cout << "Данные успешно записаны в файл!\n";
+	ofstream fout;
+	fout.exceptions(ofstream::badbit | ofstream::failbit);
+	try
+	{
+		fout.open(fName);
+		cout << "Данные успешно записаны в файл!\n";
 
-	//	fout << arr2 << "\n";
-	//	fout.close();
-	//}
+		fout << arr2 << "\n";
+		fout.close();
+	}
 
-	//catch (const ofstream::failure& ex)
-	//{
-	//	cout << "Ошибка!" << endl;
-	//	cout << ex.what() << endl; //описание ошибки exception
-	//	cout << ex.code() << endl;	//стандартный код ошибки fstream	
-	//}	
+	catch (const ofstream::failure& ex)
+	{
+		cout << "Ошибка!" << endl;
+		cout << ex.what() << endl; //описание ошибки exception
+		cout << ex.code() << endl;	//стандартный код ошибки fstream	
+	}	
 	
 
 	cout << "\n-------------------------------------\n\n";
 	
 	//Тестирование открытие файла на считывание данных используя стандартный exception fstream
 
-	//ifstream fin;
+	ifstream fin;
 
-	//fin.exceptions(ifstream::badbit | ifstream::failbit);
+	fin.exceptions(ifstream::badbit | ifstream::failbit);
 
-	//char buf;	
+	char buf;	
 
-	//try
-	//{
-	//	fin.open(fName);
-	//	cout << "Файл открыт!\n";
-	//	for (size_t i = 0; i < arr3.GetSize(); i++)
-	//	{
-	//		fin >> buf;
-	//		arr3[i] = buf;
-	//	}
-	//	cout << "Данные успешно считаны!\n";
+	try
+	{
+		fin.open(fName);
+		cout << "Файл открыт!\n";
+		for (size_t i = 0; i < arr3.GetSize(); i++)
+		{
+			fin >> buf;
+			arr3[i] = buf;
+		}
+		cout << "Данные успешно считаны!\n";
 
-	//	cout << arr3;
+		cout << arr3;
 
-	//	fin.close();
-	//}
-	//catch (const ifstream::failure & ex)
-	//{
-	//	cout << "Ошибка!" << endl;
-	//	cout << ex.what() << endl; //описание ошибки exception
-	//	cout << ex.code() << endl;	//стандартный код ошибки fstream	
-	//}
-	//cout << "\n-------------------------------------\n\n";
+		fin.close();
+	}
+	catch (const ifstream::failure & ex)
+	{
+		cout << "Ошибка!" << endl;
+		cout << ex.what() << endl; //описание ошибки exception
+		cout << ex.code() << endl;	//стандартный код ошибки fstream	
+	}
+	cout << "\n-------------------------------------\n\n";
 	
 	//Тестирование throw несуществующего индекса массива
 	// <0 throw index
