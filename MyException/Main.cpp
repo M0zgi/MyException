@@ -88,6 +88,8 @@ int main()
 	cout << "\n-------------------------------------\n\n";
 	
 	//Тестирование throw несуществующего индекса массива
+	// <0 throw index
+	// >= size throw MyException() -> class MyException: public exception
 
 	try
 	{
@@ -97,6 +99,17 @@ int main()
 	{
 		cout << ex;
 	}	
+
+	catch (MyException& ex)
+	{
+		cout << ex.what() << " ";
+		cout << ex.GetErrorCode();
+	}
+
+	catch (exception& ex)
+	{
+		cout << ex.what() << " ";
+	}
 
 	cout << endl;
 	system("pause");

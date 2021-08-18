@@ -6,6 +6,7 @@
 #include<typeinfo>
 #include<exception>
 #include<iomanip>
+#include"Exception.h"
 
 using namespace std;
 
@@ -27,6 +28,8 @@ public:
 	int GetSize() { return size; }
 
 	~MyArray();
+
+	
 
 	template<class T>
 	friend ostream& operator<<(ostream& out, const MyArray<T>& obj);
@@ -101,8 +104,11 @@ inline T& MyArray<T>::operator[](int index)
 			throw index;
 		}
 
-		cout << "Указанный индекс массива >= size: ";
-		throw index;	
+		/*cout << "Указанный индекс массива >= size: ";
+		throw index;*/	
+
+		//бросаем свой класс MyException
+		throw MyException("Указанный индекс массива >= size", index);
 	}
 
 	else
