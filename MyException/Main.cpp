@@ -12,12 +12,12 @@ int main()
 
 	string fName = "myFile.txt"; // имя файла для сохранения массива
 
-	MyArray <char> arr2(1);
-	MyArray <char> arr3(8);
+	MyArray <int> arr2(1);
+	MyArray <string> arr3(8);
 	
 	try
 	{
-		MyArray <char> arr(8);
+		MyArray <int> arr(8);
 		
 		arr.FillArray();
 		
@@ -64,8 +64,8 @@ int main()
 
 	fin.exceptions(ifstream::badbit | ifstream::failbit);
 
-	char buf;	
-
+	string buf;
+	
 	try
 	{
 		fin.open(fName);
